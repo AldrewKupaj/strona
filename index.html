@@ -76,15 +76,39 @@
                     </a>
                 </div>
                 <!-- Menu (Zakładki) -->
-                <nav class="hidden md:flex space-x-8 h-full items-center">
-                    <a href="#" id="link-home" onclick="nawigacja('home', event)" class="nav-active text-gray-600 hover:text-wood-500 font-medium transition-colors h-full flex items-center px-1">Strona Główna</a>
-                    <a href="#" id="link-oferta" onclick="nawigacja('oferta', event)" class="text-gray-600 hover:text-wood-500 font-medium transition-colors h-full flex items-center px-1">Oferta</a>
-                    <a href="#" id="link-onas" onclick="nawigacja('onas', event)" class="text-gray-600 hover:text-wood-500 font-medium transition-colors h-full flex items-center px-1">O nas</a>
-                    <a href="#" id="link-kontakt" onclick="nawigacja('kontakt', event)" class="text-gray-600 hover:text-wood-500 font-medium transition-colors h-full flex items-center px-1">Kontakt</a>
+                <nav class="hidden md:flex space-x-6 lg:space-x-8 h-full items-center">
+                    <a href="#" id="link-home" onclick="nawigacja('home', event)" class="nav-active text-gray-600 hover:text-wood-500 font-medium transition-colors h-full flex items-center px-1 text-sm lg:text-base">Strona Główna</a>
+                    <a href="#" id="link-oferta" onclick="nawigacja('oferta', event)" class="text-gray-600 hover:text-wood-500 font-medium transition-colors h-full flex items-center px-1 text-sm lg:text-base">Oferta</a>
+                    <a href="#" id="link-uslugi" onclick="nawigacja('uslugi', event)" class="text-gray-600 hover:text-wood-500 font-medium transition-colors h-full flex items-center px-1 text-sm lg:text-base">Usługi CNC</a>
+                    <a href="#" id="link-onas" onclick="nawigacja('onas', event)" class="text-gray-600 hover:text-wood-500 font-medium transition-colors h-full flex items-center px-1 text-sm lg:text-base">O nas</a>
+                    <a href="#" id="link-kontakt" onclick="nawigacja('kontakt', event)" class="text-gray-600 hover:text-wood-500 font-medium transition-colors h-full flex items-center px-1 text-sm lg:text-base">Kontakt</a>
                 </nav>
+                
+                <!-- Przycisk menu mobilnego -->
+                <div class="md:hidden flex items-center pr-2">
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-wood-500 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-3xl"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
+
+    <!-- MENU MOBILNE (Wysuwane na telefonach) -->
+    <div id="mobile-menu" class="fixed inset-0 bg-wood-900/95 z-[100] hidden flex-col pt-24 px-6 fade-in">
+        <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-gray-300 hover:text-white text-4xl focus:outline-none">&times;</button>
+        <nav class="flex flex-col space-y-8 text-center text-white text-2xl font-semibold">
+            <a href="#" onclick="nawigacja('home', event); toggleMobileMenu()" class="hover:text-wood-300 transition-colors">Strona Główna</a>
+            <a href="#" onclick="nawigacja('oferta', event); toggleMobileMenu()" class="hover:text-wood-300 transition-colors">Oferta</a>
+            <a href="#" onclick="nawigacja('uslugi', event); toggleMobileMenu()" class="hover:text-wood-300 transition-colors">Usługi CNC</a>
+            <a href="#" onclick="nawigacja('onas', event); toggleMobileMenu()" class="hover:text-wood-300 transition-colors">O nas</a>
+            <a href="#" onclick="nawigacja('kontakt', event); toggleMobileMenu()" class="hover:text-wood-300 transition-colors">Kontakt</a>
+        </nav>
+        <div class="mt-auto mb-10 text-center text-gray-400">
+            <p class="text-sm mb-2">Szybki kontakt:</p>
+            <a href="tel:731210220" class="text-2xl font-bold text-white mb-2 block"><i class="fa-solid fa-phone text-wood-500 mr-2"></i> 731 210 220</a>
+        </div>
+    </div>
 
     <!-- GŁÓWNY KONTENER NA ZAKŁADKI -->
     <div id="main-content" class="flex-grow">
@@ -98,9 +122,14 @@
                 <div class="max-w-4xl mx-auto text-white">
                     <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">Aldrew - Twój Skład Drewna</h1>
                     <p class="text-xl mb-8 text-gray-200 drop-shadow-md">Konstrukcje, elewacje, pokrycia dachowe i architektura ogrodowa najwyższej jakości.</p>
-                    <a href="#" onclick="nawigacja('oferta', event)" class="bg-wood-500 hover:bg-wood-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300 text-lg shadow-lg inline-block">
-                        Zobacz Katalog Produktów
-                    </a>
+                    <div class="flex gap-4 justify-center flex-wrap">
+                        <a href="#" onclick="nawigacja('oferta', event)" class="bg-wood-500 hover:bg-wood-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300 text-lg shadow-lg inline-block">
+                            Zobacz Katalog Produktów
+                        </a>
+                        <a href="#" onclick="nawigacja('uslugi', event)" class="bg-transparent border-2 border-white hover:bg-white hover:text-wood-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-300 text-lg shadow-lg inline-block">
+                            Nasze Usługi CNC
+                        </a>
+                    </div>
                 </div>
             </section>
 
@@ -115,9 +144,9 @@
                             <p class="text-gray-300">Drewno wyłącznie z certyfikowanych źródeł Lasów Państwowych.</p>
                         </div>
                         <div>
-                            <i class="fa-solid fa-hammer text-4xl text-wood-300 mb-4"></i>
-                            <h3 class="text-xl font-bold mb-2">Własny Warsztat</h3>
-                            <p class="text-gray-300">Gotowe wyroby, jak altany i budy, tworzymy od podstaw w naszym zakładzie.</p>
+                            <i class="fa-solid fa-microchip text-4xl text-wood-300 mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">Technologia CNC</h3>
+                            <p class="text-gray-300">Dysponujemy precyzyjnym centrum ciesielskim Hundegger K2, wyznaczającym nowe standardy jakości.</p>
                         </div>
                         <div>
                             <i class="fa-solid fa-truck-fast text-4xl text-wood-300 mb-4"></i>
@@ -942,7 +971,82 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- ZAKŁADKA 3: O NAS                          -->
+        <!-- ZAKŁADKA 3: USŁUGI CNC (NOWA ZAKŁADKA)     -->
+        <!-- ========================================== -->
+        <div id="page-uslugi" class="fade-in hidden bg-white">
+            
+            <!-- Hero Usługi -->
+            <div class="bg-wood-900 py-20 px-4 text-center text-white relative overflow-hidden">
+                <div class="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1502672260266-1c1c65f903a4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center"></div>
+                <div class="relative z-10 max-w-4xl mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-wood-300">Precyzja, która buduje zaufanie</h2>
+                    <p class="text-xl text-gray-300 leading-relaxed">Poznaj nasze profesjonalne usługi ciesielskie i stolarskie, realizowane z milimetrową dokładnością dzięki nowoczesnej technologii CNC.</p>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <!-- Sekcja Hundegger K2 -->
+                <div class="bg-gray-50 rounded-2xl p-8 md:p-12 mb-16 border border-gray-200 shadow-sm flex flex-col md:flex-row items-center gap-10">
+                    <div class="md:w-1/3 flex justify-center">
+                        <div class="w-48 h-48 bg-wood-100 rounded-full flex items-center justify-center border-4 border-wood-300 shadow-inner">
+                            <i class="fa-solid fa-microchip text-7xl text-wood-700"></i>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <span class="text-forest-600 font-bold tracking-wider uppercase text-sm mb-2 block">Nasz Park Maszynowy</span>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Centrum Obróbcze Hundegger K2</h3>
+                        <p class="text-gray-700 mb-4 text-lg">
+                            W naszym zakładzie wykorzystujemy jedną z najbardziej zaawansowanych maszyn ciesielskich na świecie. Praca z Hundegger K2 to gwarancja perfekcji.
+                        </p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-forest-500"></i> Idealne spasowanie każdego elementu (np. na jaskółczy ogon).</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-forest-500"></i> Błyskawiczny montaż gotowych konstrukcji na placu budowy.</li>
+                            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-forest-500"></i> Brak odpadów i błędów ludzkich podczas docinania.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Karty Usług -->
+                <h3 class="text-3xl font-bold text-gray-900 mb-10 text-center uppercase tracking-wide">Co realizujemy na CNC?</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Usługa 1: Altany CNC -->
+                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1585807963283-360ee3355523?auto=format&fit=crop&w=600&q=80" alt="Projekty altan" class="h-56 w-full object-cover">
+                        <div class="p-8 flex-grow flex flex-col">
+                            <h4 class="text-2xl font-bold text-gray-900 mb-4">Projekty altan z wycięciem CNC</h4>
+                            <p class="text-gray-600 flex-grow mb-6">Gotowe do złożenia pakiety ("Zrób to sam"). Idealnie docięte elementy altan, wycinane bezpośrednio z projektu. Oferujemy gotowe złącza ciesielskie, które poskładasz bez użycia zaawansowanych narzędzi.</p>
+                            <button onclick="otworzModalFormularz('Zapytanie o altanę wycinaną na CNC')" class="w-full bg-wood-100 hover:bg-wood-200 text-wood-900 font-bold py-3 rounded transition-colors">Zapytaj o wycenę</button>
+                        </div>
+                    </div>
+
+                    <!-- Usługa 2: Więźby dachowe -->
+                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=600&q=80" alt="Więźby dachowe" class="h-56 w-full object-cover">
+                        <div class="p-8 flex-grow flex flex-col">
+                            <h4 class="text-2xl font-bold text-gray-900 mb-4">Więźby dachowe CNC</h4>
+                            <p class="text-gray-600 flex-grow mb-6">Przekaż nam projekt dachu, a my przygotujemy kompletną, opisaną i ponumerowaną więźbę. Dostarczamy gotowy szkielet dachu, oszczędzając czas i nerwy Twojej ekipy budowlanej.</p>
+                            <button onclick="otworzModalFormularz('Zapytanie o prefabrykowaną więźbę dachową')" class="w-full bg-wood-100 hover:bg-wood-200 text-wood-900 font-bold py-3 rounded transition-colors">Zapytaj o wycenę</button>
+                        </div>
+                    </div>
+
+                    <!-- Usługa 3: Domki narzędziowe -->
+                    <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all overflow-hidden flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80" alt="Domki narzędziowe" class="h-56 w-full object-cover">
+                        <div class="p-8 flex-grow flex flex-col">
+                            <h4 class="text-2xl font-bold text-gray-900 mb-4">Domki narzędziowe</h4>
+                            <p class="text-gray-600 flex-grow mb-6">Trwałe i estetyczne domki ogrodowe i narzędziowe wycinane maszynowo. Oferujemy produkcję na podstawie naszych sprawdzonych wzorów lub według indywidualnego projektu klienta.</p>
+                            <button onclick="otworzModalFormularz('Zapytanie o domek narzędziowy')" class="w-full bg-wood-100 hover:bg-wood-200 text-wood-900 font-bold py-3 rounded transition-colors">Zapytaj o wycenę</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- ZAKŁADKA 4: O NAS                          -->
         <!-- ========================================== -->
         <div id="page-onas" class="fade-in hidden py-16 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -960,10 +1064,10 @@
                             Jesteśmy dynamicznie rozwijającym się centrum drewna i pokryć dachowych prowadzonym przez <strong>Aleksandrę Bochen</strong>. Nasza siedziba znajduje się w miejscowości Jagodziniec. 
                         </p>
                         <p class="mb-6">
-                            Niedawno ukończyliśmy budowę i wyposażenie naszego nowego warsztatu i garażu, dzięki czemu jesteśmy w stanie własnoręcznie, z największą dbałością o detale, produkować wyjątkową architekturę ogrodową – od solidnych bud dla zwierząt, przez drewutnie, aż po kompletne altany.
+                            Niedawno ukończyliśmy budowę i wyposażenie naszego nowego warsztatu i garażu. Inwestycja w nowoczesny park maszynowy (w tym flagowe centrum <strong>Hundegger K2</strong>) pozwala nam dostarczać produkty najwyższej próby.
                         </p>
                         <p>
-                            Dostarczamy nie tylko drewno konstrukcyjne najwyższej klasy (C24, KVH), ale też służymy fachowym doradztwem. Wybierając Aldrew, stawiasz na pasję, rzetelność i drewno, które przetrwa lata.
+                            Dostarczamy nie tylko drewno konstrukcyjne najwyższej klasy (C24, KVH), ale też służymy fachowym doradztwem i wycinamy perfekcyjne więźby dachowe. Wybierając Aldrew, stawiasz na precyzję, rzetelność i drewno, które przetrwa lata.
                         </p>
                     </div>
                 </div>
@@ -971,7 +1075,7 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- ZAKŁADKA 4: KONTAKT                        -->
+        <!-- ZAKŁADKA 5: KONTAKT                        -->
         <!-- ========================================== -->
         <div id="page-kontakt" class="fade-in hidden py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1050,7 +1154,7 @@
             <div class="bg-white p-2 rounded-xl inline-block mb-4">
                 <img src="images.jpg" alt="Aldrew Logo" class="h-10 w-auto object-contain">
             </div>
-            <p class="text-sm text-gray-400 mb-2">Twoje centrum drewna, pokryć dachowych i architektury ogrodowej.</p>
+            <p class="text-sm text-gray-400 mb-2">Twoje centrum drewna, pokryć dachowych i architektury ogrodowej CNC.</p>
             <p class="text-xs text-gray-500">&copy; 2026 Aldrew Aleksandra Bochen. Wszelkie prawa zastrzeżone.</p>
         </div>
     </footer>
@@ -1059,8 +1163,8 @@
     <div id="modal-kontakt" class="fixed inset-0 bg-black/70 z-[100] hidden flex items-center justify-center fade-in px-4" onclick="zamknijModal()">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 relative" onclick="event.stopPropagation()">
             <button onclick="zamknijModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-3xl font-bold leading-none">&times;</button>
-            <h3 class="text-2xl font-bold text-gray-900 mb-1 text-center">Zapytanie o produkt</h3>
-            <h4 id="modal-nazwa-produktu" class="text-lg font-bold text-forest-600 mb-6 text-center border-b pb-4">Wybierz produkt</h4>
+            <h3 class="text-2xl font-bold text-gray-900 mb-1 text-center">Zapytanie ofertowe</h3>
+            <h4 id="modal-nazwa-produktu" class="text-lg font-bold text-forest-600 mb-6 text-center border-b pb-4">Formularz kontaktowy</h4>
             
             <div class="space-y-4">
                 <div>
@@ -1069,7 +1173,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 mb-1 uppercase tracking-wide">Telefon kontaktowy</label>
-                    <input id="form-tel" type="tel" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:border-wood-500 transition-colors text-gray-800" placeholder="123 456 789">
+                    <input id="form-tel" type="tel" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 focus:outline-none focus:border-wood-500 transition-colors text-gray-800" placeholder="731 210 220">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-600 mb-1 uppercase tracking-wide">Wiadomość</label>
@@ -1212,18 +1316,14 @@
         // --- SKRYPTY FORMULARZA I MODALA ---
 
         function otworzModalFormularz(nazwaProduktu) {
-            // Blokuje przypadkowe kliknięcia np. gdy przycisk jest na kafelku
             if(window.event) window.event.stopPropagation();
             
-            // Wypełnianie modala nazwą wybranego produktu
             const naglowek = document.getElementById('modal-nazwa-produktu');
             if(naglowek) naglowek.innerText = nazwaProduktu;
             
-            // Wstępne wypełnianie pola wiadomości
             const poleWiadomosc = document.getElementById('form-wiadomosc');
-            if(poleWiadomosc) poleWiadomosc.value = `Dzień dobry,\n\nInteresuje mnie produkt: ${nazwaProduktu}. Proszę o więcej informacji i wycenę.\n\nPozdrawiam,`;
+            if(poleWiadomosc) poleWiadomosc.value = `Dzień dobry,\n\nInteresuje mnie: ${nazwaProduktu}. Proszę o więcej informacji i wycenę.\n\nPozdrawiam,`;
             
-            // Wyświetlenie modala
             const modal = document.getElementById('modal-kontakt');
             if(modal) modal.classList.remove('hidden');
         }
@@ -1240,13 +1340,12 @@
             const tel = document.getElementById('form-tel').value || 'Brak telefonu';
             const wiadomosc = document.getElementById('form-wiadomosc').value;
 
-            const subject = encodeURIComponent(`Zapytanie o produkt ze strony: ${produkt}`);
+            const subject = encodeURIComponent(`Zapytanie ofertowe ze strony: ${produkt}`);
             const bodyWiadomosc = `${wiadomosc}\n\n---\nDane podane w formularzu:\nZgłaszający: ${imie}\nTelefon do kontaktu: ${tel}`;
             const body = encodeURIComponent(bodyWiadomosc);
 
             const mailtoLink = `mailto:aldrew.kupaj@gmail.com?subject=${subject}&body=${body}`;
             
-            // Uruchamia domyślnego klienta e-mail (Outlook, Poczta, Gmail na telefonie)
             window.location.href = mailtoLink;
             zamknijModal();
         }
@@ -1256,7 +1355,7 @@
         function nawigacja(strona, event) {
             if(event) event.preventDefault();
 
-            ['page-home', 'page-oferta', 'page-onas', 'page-kontakt'].forEach(id => {
+            ['page-home', 'page-oferta', 'page-uslugi', 'page-onas', 'page-kontakt'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.classList.add('hidden');
             });
@@ -1264,7 +1363,7 @@
             const docelowa = document.getElementById('page-' + strona);
             if (docelowa) docelowa.classList.remove('hidden');
 
-            ['link-home', 'link-oferta', 'link-onas', 'link-kontakt'].forEach(id => {
+            ['link-home', 'link-oferta', 'link-uslugi', 'link-onas', 'link-kontakt'].forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.classList.remove('nav-active');
             });
@@ -1309,15 +1408,13 @@
 
             const p = bazaProduktow[idProduktu];
             if(p) {
-                // Wstawianie podstawowych informacji
                 document.getElementById('prod-img').src = p.img;
                 document.getElementById('prod-nazwa').innerText = p.nazwa;
                 document.getElementById('prod-cena').innerText = p.cena;
                 document.getElementById('prod-opis').innerText = p.opis;
                 
-                // Rysowanie specyfikacji elastycznej
                 const specsList = document.getElementById('prod-specs-list');
-                specsList.innerHTML = ''; // Wyczyszczenie poprzedniej listy
+                specsList.innerHTML = ''; 
                 
                 if(p.specyfikacja && p.specyfikacja.length > 0) {
                     p.specyfikacja.forEach(spec => {
@@ -1350,6 +1447,22 @@
             if (siatka) siatka.classList.remove('hidden');
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- OBSŁUGA MENU MOBILNEGO ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                if (menu.classList.contains('hidden')) {
+                    menu.classList.remove('hidden');
+                    menu.classList.add('flex');
+                    document.body.style.overflow = 'hidden'; // Blokuje przewijanie strony pod spodem
+                } else {
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex');
+                    document.body.style.overflow = 'auto'; // Odblokowuje przewijanie
+                }
+            }
         }
     </script>
 </body>
